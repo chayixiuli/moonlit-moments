@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101f2e">
+  <meta name="description" content="把喧嚣留在白天。来这里听一会儿音乐，收下一颗星，读一封晚安信。">
+  <title>月色来信 · 今晚的月色，分你一半</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='22' fill='%23101f2e'/%3E%3Cpath d='M55 18A27 27 0 1 0 62 56 28 28 0 0 1 55 18' fill='%23ead9b0'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="night" aria-hidden="true">
+    <canvas id="sky"></canvas>
+    <div class="mist mist-one"></div><div class="mist mist-two"></div>
+    <div class="moon-halo"><div class="moon"></div></div>
+    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+    <svg class="mountains" viewBox="0 0 1440 440" preserveAspectRatio="none">
+      <defs><linearGradient id="ridge" x2="0" y2="1"><stop stop-color="#3b5964"/><stop offset="1" stop-color="#1b3440"/></linearGradient><linearGradient id="water" x2="0" y2="1"><stop stop-color="#24434d"/><stop offset="1" stop-color="#10252e"/></linearGradient><linearGradient id="reflection" x2="0" y2="1"><stop stop-color="#c6b888" stop-opacity=".32"/><stop offset="1" stop-color="#c6b888" stop-opacity="0"/></linearGradient></defs>
+      <path fill="url(#ridge)" d="M0 173 67 145 130 161 215 118 284 143 389 92 453 113 501 98 573 140 658 112 736 163 822 134 884 158 946 119 1035 146 1122 104 1195 143 1298 114 1365 149 1440 133V440H0Z"/>
+      <path fill="#203f48" d="M0 217 95 192 178 213 266 165 336 191 425 159 517 211 610 180 694 216 801 186 905 212 982 178 1084 208 1179 162 1290 199 1380 179 1440 196V440H0Z"/>
+      <path fill="url(#water)" d="M0 255Q240 240 435 261T880 255T1440 263V440H0Z"/>
+      <path fill="url(#reflection)" d="m1073 256 15 0 14 17-33 3 42 14-60 5 78 19-98 6 113 20-145 8 171 29-198 10 220 35h-263l228-35-197-10 162-29-128-8 95-20-81-6 66-19-47-5 29-14-25-3Z"/>
+      <g stroke="#b4b399" stroke-opacity=".13"><path d="M911 292h62m123-10h70m-156 38h86m-231 31h97m142 7h96m-447 37h122m135 8h143"/></g>
+      <path fill="#102730" d="M0 266q84-5 159 35t213 53q-62 30-148 44L0 425Z"/>
+      <path fill="#0b1d27" d="M0 341q89-35 209 18t283 81H0Zm1440-30q-131-17-222 39t-212 90h434Z"/>
+      <g fill="#0b1d27"><path d="m53 352 9-123 9 123Zm-14-38 23-54 25 54Zm-8 20 32-62 33 62Zm129 39 5-91 7 91Zm-13-28 19-44 20 44Zm1136 14 9-136 9 136Zm-17-47 26-63 27 63Zm-9 24 35-70 37 70Zm77-4 5-102 7 102Zm-14-31 20-51 22 51Z"/></g>
+    </svg>
+    <div class="grain"></div>
+  </div>
+
+  <header class="header">
+    <a class="brand" href="./" aria-label="月色来信首页"><span class="brand-moon">☾</span><span>月色来信<small>LETTERS FROM THE MOON</small></span></a>
+    <button id="music-toggle" class="music-toggle" type="button" aria-pressed="false" aria-label="开启夜间音乐">
+      <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="music-label">听见夜晚</span><span class="music-state" aria-hidden="true">OFF</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="title">
+      <p class="eyebrow"><span></span> 一处只收藏温柔的地方</p>
+      <h1 id="title">今晚的月色，<br>分你<span class="title-last">一半<span class="hand-star" aria-hidden="true">✧</span></span>。</h1>
+      <p class="intro">把喧嚣留在白天，把心事交给星空。<br>这一刻，什么都不用赶。</p>
+      <div class="actions">
+        <button id="collect-star" class="primary" type="button"><span aria-hidden="true">✧</span> 收下一颗星 <span class="arrow" aria-hidden="true">↗</span></button>
+        <button id="open-letter" class="letter-link" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3 6 9 7 9-7"/></svg>读一封晚安信</button>
+      </div>
+      <p class="microcopy">不必许愿。你本身，就是很好的存在。</p>
+    </section>
+
+    <section class="constellation" aria-label="点击星星，发现藏在夜空里的话">
+      <svg class="star-lines" viewBox="0 0 600 470" preserveAspectRatio="none" aria-hidden="true"><path d="M72 205 174 116 288 188 372 86 500 147 451 299 302 352"/></svg>
+      <button class="wish-star" style="--x:12%;--y:44%;--delay:0s" data-star="0" aria-label="第一颗星：给此刻的你"><span>✧</span></button>
+      <button class="wish-star" style="--x:29%;--y:25%;--delay:1s" data-star="1" aria-label="第二颗星：关于遇见"><span>✦</span></button>
+      <button class="wish-star" style="--x:48%;--y:40%;--delay:2s" data-star="2" aria-label="第三颗星：关于想念"><span>✧</span></button>
+      <button class="wish-star" style="--x:62%;--y:18%;--delay:.5s" data-star="3" aria-label="第四颗星：关于陪伴"><span>✧</span></button>
+      <button class="wish-star" style="--x:83%;--y:31%;--delay:1.5s" data-star="4" aria-label="第五颗星：关于明天"><span>✦</span></button>
+      <button class="wish-star" style="--x:75%;--y:64%;--delay:2.5s" data-star="5" aria-label="第六颗星：关于浪漫"><span>✧</span></button>
+      <button class="wish-star" style="--x:50%;--y:75%;--delay:3s" data-star="6" aria-label="第七颗星：晚安"><span>✧</span></button>
+      <p class="star-hint">点点星光，藏着悄悄话 <span aria-hidden="true">↗</span></p>
+    </section>
+
+    <aside class="night-note" aria-live="polite" aria-atomic="true">
+      <span class="note-index" id="note-index">A LITTLE NOTE FOR YOU</span>
+      <p id="star-message">宇宙很大，<br>但此刻的月光，刚好落在你身上。</p>
+      <span class="note-line"></span><span id="collected-label">今夜，宜慢慢喜欢生活。</span>
+    </aside>
+
+    <footer class="footer"><span class="footer-date" id="night-date">今夜 · 月色正好</span><span class="footer-center">愿每个晚归的人，都有一盏灯。<span aria-hidden="true">✧</span></span><span class="footer-sign">MADE OF LITTLE MOMENTS</span></footer>
+  </main>
+
+  <dialog id="letter-dialog" aria-labelledby="letter-title">
+    <button id="close-letter" class="close-letter" type="button" aria-label="关闭晚安信">×</button>
+    <article class="paper"><span class="paper-top">一 封 来 自 月 亮 的 信</span><span class="paper-moon" aria-hidden="true">☾</span><h2 id="letter-title">写给此刻的你</h2><p>见字如晤。</p><p>如果今天有一点累，就在这里坐一会儿吧。让那些还没有答案的事，暂时停在夜色里。</p><p>你不必时时闪闪发光。月亮也有不圆的时候，却依然有人抬头，认真地喜欢它。</p><p>愿你往后的日子，有人听你的碎碎念，也有人陪你看那些不必命名的风景。</p><p>在那之前，也请好好拥抱自己。</p><p class="goodnight">今晚，做一个柔软的梦。</p><div class="signature">月亮邮局 <span>寄于一个温柔的夜晚</span></div></article>
+  </dialog>
+  <div id="audio-status" class="sr-only" role="status"></div>
+</body>
+</html>
