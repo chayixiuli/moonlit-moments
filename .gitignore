@@ -1,0 +1,10 @@
+.local/
+__pycache__/
+qa/
+node_modules/
+.wrangler/
+.dev.vars*
+.env*
+public/
+cloudflare-upload/
+*.zip

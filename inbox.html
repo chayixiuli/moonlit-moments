@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#faf8f1">
+<title>小家的收信箱 · 歇一会儿</title>
+<link rel="stylesheet" href="./rest.css?v=mail1"><link rel="stylesheet" href="./mailbox.css?v=mail1">
+<script src="./inbox.js?v=mail1" defer></script>
+</head>
+<body>
+<header class="inbox-header wrap"><a class="brand" href="./">歇一会儿</a><span class="preview-badge">本地收信预览</span><a href="./#mailbox">回到小家 ↗</a></header>
+<main class="inbox-shell wrap">
+  <div class="inbox-heading"><div><p class="section-kicker">LETTERS TO OUR LITTLE HOME</p><h1>小家的收信箱</h1><p class="section-desc">来坐坐的朋友，把想说的话留在了这里。<br>本地体验：信件保存在这台电脑；上线前还会加上主人登录保护。</p></div><div class="inbox-tools"><button class="text-button" id="refresh-inbox" type="button">↻ 刷新信箱</button><button class="text-button" id="export-letters" type="button" disabled>↓ 导出信件</button></div></div>
+  <p class="inbox-status" id="inbox-status" role="status">正在打开小信箱…</p>
+  <div class="inbox-layout">
+    <aside class="inbox-sidebar" aria-label="信件列表"><div class="inbox-filters" role="group" aria-label="筛选信件"><button id="filter-all" type="button" aria-pressed="true">全部 <span id="all-count">0</span></button><button id="filter-unread" type="button" aria-pressed="false">未读 <span id="unread-count">0</span></button></div><ul class="letter-list" id="letter-list"></ul></aside>
+    <article class="inbox-reader" aria-label="信件内容" id="inbox-reader"><div class="reader-empty"><span aria-hidden="true">✉</span><h2>小信箱已经准备好啦。</h2><p>收到来信后，就能在这里慢慢读。</p></div></article>
+  </div>
+</main>
+<footer class="footer wrap"><a href="./">歇一会儿</a><p>日子里的小美好，也藏在一封来信里。</p></footer>
+<dialog class="delete-dialog" id="delete-dialog" aria-labelledby="delete-title"><h2 id="delete-title">要删除这封信吗？</h2><p>删除后，这封信就不在本地信箱里了。<br>想留个纪念的话，可以先导出信件。</p><div class="delete-actions"><button class="button secondary" id="cancel-delete" type="button" autofocus>再留一会儿</button><button class="button danger" id="confirm-delete" type="button">删除这封信</button></div></dialog>
+</body></html>
